@@ -18,12 +18,12 @@ public class ProductController {
 
     private final ProductService productService;
 
-    // Constructor Injection (Week 3 pattern)
+
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
-    // GET /products → tampilkan semua produk
+
     @GetMapping
     public String listProducts(Model model) {  // ← Model object (Baki Pengantar)
         List<Product> products = productService.findAll();  // ← dari Service (Model Layer/Dapur)
@@ -35,7 +35,7 @@ public class ProductController {
         return "product/list";  // → templates/product/list.html
     }
 
-    // GET /products/42 → tampilkan detail produk
+
     @GetMapping("/{id}")
     public String productDetail(@PathVariable Long id, Model model) {
         Optional<Product> product = productService.findById(id);
@@ -51,7 +51,7 @@ public class ProductController {
         return "product/detail";  // → templates/product/detail.html
     }
 
-    // GET /products/category/Elektronik → filter by category
+
     @GetMapping("/category/{category}")
     public String productsByCategory(@PathVariable String category, Model model) {
         List<Product> products = productService.findByCategory(category);
@@ -64,7 +64,7 @@ public class ProductController {
         return "product/list";  // reuse template yang sama!
     }
 
-    // GET /products/search?keyword=laptop → search produk
+
     @GetMapping("/search")
     public String searchProducts(@RequestParam(defaultValue = "") String keyword,
                                  Model model) {
@@ -78,5 +78,15 @@ public class ProductController {
         model.addAttribute("keyword", keyword);
 
         return "product/list";  // reuse template yang sama!
+    }
+    @GetMapping("/categories")
+    public String showCategorySummary(Model model) {
+
+        List<String> categories = productService.getAllCategories();
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("title", "Ringkasan Kategori");
+
+        return "product/categories"; // Mengarah ke file templates/product/categories.html
     }
 }

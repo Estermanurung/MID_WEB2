@@ -22,6 +22,7 @@ public class ProductService {
         products.add(new Product(6L, "Novel Laskar Pelangi", "Buku", 75_000, 45));
     }
 
+
     public List<Product> findAll() {
         return products;
     }
@@ -44,4 +45,12 @@ public class ProductService {
                 .filter(p -> p.getName().toLowerCase().contains(lowerKeyword))
                 .toList();
     }
+    public List<String> getAllCategories() {
+        return products.stream()
+                .map(Product::getCategory) // Mengambil field category dari setiap Product
+                .distinct()                // Menghilangkan nama kategori yang sama
+                .sorted()                  // Mengurutkan sesuai abjad agar rapi
+                .toList();
+    }
+
 }

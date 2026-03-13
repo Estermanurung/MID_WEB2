@@ -53,3 +53,5 @@ file template(seperti.html atau jsp) yang sesuai oleh controller___.
 5. **Jika kamu buka `http://localhost:8080/products/abc` (ID bukan angka), apa yang terjadi? Kenapa?**
 6. **Apa keuntungan pakai `@RequestMapping("/products")` di level class dibanding menulis full path di setiap `@GetMapping`?**
 7. **Dalam lab ini, kata "Model" muncul dalam beberapa konteks berbeda. Sebutkan minimal 2 arti yang berbeda dan jelaskan perbedaannya.**
+
+https://youtu.be/TZVo2eihsX8
